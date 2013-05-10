@@ -1,10 +1,17 @@
 'use strict';
 
-angular.module('angularMeetupApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+var app = angular.module('angularMeetupApp');
+
+app.controller('MainCtrl', function($scope, $http) {
+  $http.get('http://localhost:3000/wines').success(function(data) {
+    $scope.awesomeThings = data;
+    console.log('got it');
   });
+
+//  $scope.awesomeThings = [
+//    'HTML5 Boilerplate',
+//    'AngularJS',
+//    'Karma'
+//  ];
+
+});
