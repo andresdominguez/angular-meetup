@@ -44,7 +44,7 @@ bandApp.findById = function(collectionName, req, res) {
   });
 };
 
-bandApp.addItem = function(collectionName, req, res) {
+bandApp.createItem = function(collectionName, req, res) {
   var item = req.body;
   console.log('Adding item', collectionName, JSON.stringify(item));
   db.collection(collectionName, function(err, collection) {
@@ -70,6 +70,10 @@ exports.findBandById = _.partial(bandApp.findById, BANDS);
 exports.findAlbumById = _.partial(bandApp.findById, ALBUMS);
 exports.findMemberById = _.partial(bandApp.findById, MEMBERS);
 
+// Create
+exports.createBand = _.partial(bandApp.createItem, BANDS);
+exports.createAlbum = _.partial(bandApp.createItem, ALBUMS);
+exports.createMember = _.partial(bandApp.createItem, MEMBERS);
 
 exports.updateWine = function(req, res) {
   var id = req.params.id;
