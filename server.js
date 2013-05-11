@@ -1,5 +1,5 @@
 var express = require('express'),
-    band = require('./routes/band-server'),
+    bandService = require('./routes/band-server'),
     app = express();
 
 app.configure(function() {
@@ -8,11 +8,17 @@ app.configure(function() {
   app.use(express.static(__dirname + '/app'));
 });
 
-app.get('/wines', band.findAll);
-app.get('/wines/:id', band.findById);
-app.post('/wines', band.addWine);
-app.put('/wines/:id', band.updateWine);
-app.delete('/wines/:id', band.deleteWine);
+app.get('/bands', bandService.findAllBands);
+app.get('/bands/:id', bandService.findBandById);
+//app.post('/bands', bandService.addWine);
+//app.put('/bands/:id', bandService.updateWine);
+//app.delete('/bands/:id', bandService.deleteWine);
+
+app.get('/members', bandService.findAllMembers);
+app.get('/members/:id', bandService.findMemberById);
+
+app.get('/albums', bandService.findAllAlbums);
+app.get('/albums/:id', bandService.findAlbumById);
 
 app.listen(3000);
 console.log('Listening on port 3000...');
