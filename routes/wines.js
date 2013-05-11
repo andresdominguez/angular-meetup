@@ -1,4 +1,5 @@
 var mongo = require('mongodb');
+var _ = require("underscore");
 
 var Server = mongo.Server,
     Db = mongo.Db,
@@ -41,9 +42,7 @@ menuApp.findAll = function(collectionName, req, res) {
   });
 };
 
-exports.findAll = function(req, res) {
-  menuApp.findAll(WINES, req, res);
-};
+exports.findAll = _.partial(menuApp.findAll, WINES);
 
 exports.addWine = function(req, res) {
   var wine = req.body;
