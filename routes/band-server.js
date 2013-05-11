@@ -44,6 +44,22 @@ bandApp.findById = function(collectionName, req, res) {
   });
 };
 
+bandApp.addItem = function(collectionName, req, res) {
+  var item = req.body;
+  console.log('Adding item', collectionName, JSON.stringify(item));
+  db.collection(collectionName, function(err, collection) {
+    collection.insert(item, {safe: true}, function(err, result) {
+      if (err) {
+        res.send({'error': 'An error has occurred'});
+      } else {
+        console.log('Success: ' + JSON.stringify(result[0]));
+        res.send(result[0]);
+      }
+    });
+  });
+};
+
+
 // Find all.
 exports.findAllBands = _.partial(bandApp.findAll, BANDS);
 exports.findAllAlbums = _.partial(bandApp.findAll, ALBUMS);
@@ -54,20 +70,6 @@ exports.findBandById = _.partial(bandApp.findById, BANDS);
 exports.findAlbumById = _.partial(bandApp.findById, ALBUMS);
 exports.findMemberById = _.partial(bandApp.findById, MEMBERS);
 
-exports.addWine = function(req, res) {
-  var wine = req.body;
-  console.log('Adding wine: ' + JSON.stringify(wine));
-  db.collection(BANDS, function(err, collection) {
-    collection.insert(wine, {safe: true}, function(err, result) {
-      if (err) {
-        res.send({'error': 'An error has occurred'});
-      } else {
-        console.log('Success: ' + JSON.stringify(result[0]));
-        res.send(result[0]);
-      }
-    });
-  });
-}
 
 exports.updateWine = function(req, res) {
   var id = req.params.id;
