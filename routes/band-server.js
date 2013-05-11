@@ -6,9 +6,9 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure,
     BANDS = 'bands',
     MEMBERS = 'members',
-    ALBUMS = 'albums'
+    ALBUMS = 'albums';
 
-var menuApp = {};
+var bandApp = {};
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('banddb', server);
@@ -25,7 +25,8 @@ db.open(function(err, db) {
   }
 });
 
-menuApp.findAll = function(collectionName, req, res) {
+bandApp.findAll = function(collectionName, req, res) {
+  console.log('Find all', collectionName);
   db.collection(collectionName, function(err, collection) {
     collection.find().toArray(function(err, items) {
       res.send(items);
@@ -33,18 +34,25 @@ menuApp.findAll = function(collectionName, req, res) {
   });
 };
 
-
-exports.findById = function(req, res) {
+bandApp.findById = function(collectionName, req, res) {
   var id = req.params.id;
-  console.log('Retrieving wine: ' + id);
-  db.collection('wines', function(err, collection) {
+  console.log('Find by id', collectionName, id);
+  db.collection(collectionName, function(err, collection) {
     collection.findOne({'_id': new BSON.ObjectID(id)}, function(err, item) {
       res.send(item);
     });
   });
 };
 
-exports.findAll = _.partial(menuApp.findAll, BANDS);
+// Find all.
+exports.findAllBands = _.partial(bandApp.findAll, BANDS);
+exports.findAllAlbums = _.partial(bandApp.findAll, ALBUMS);
+exports.findAllMembers = _.partial(bandApp.findAll, MEMBERS);
+
+// Find by id.
+exports.findBandById = _.partial(bandApp.findById, BANDS);
+exports.findAlbumById = _.partial(bandApp.findById, ALBUMS);
+exports.findMemberById = _.partial(bandApp.findById, MEMBERS);
 
 exports.addWine = function(req, res) {
   var wine = req.body;
