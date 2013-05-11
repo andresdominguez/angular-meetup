@@ -16,7 +16,7 @@ db = new Db('banddb', server);
 db.open(function(err, db) {
   if (!err) {
     console.log("Connected to 'banddb' database");
-    db.collection('wines', {strict: true}, function(err, collection) {
+    db.collection(BANDS, {strict: true}, function(err, collection) {
       if (err) {
         console.log("The collection does not exist, creating a new one");
         populateDB();
