@@ -7,7 +7,6 @@ var app = angular.module('angularMeetupApp');
 app.controller('MainCtrl', function($scope, $http) {
   $http.get(API_PATH + 'wines').success(function(data) {
     $scope.awesomeThings = data;
-    console.log('got it');
   });
 });
 
@@ -19,6 +18,6 @@ app.controller('ViewIngredientCtrl', function($scope, $routeParams, $http) {
 });
 
 /*
-* Band has albums
-* Band has members
-* */
+ * Band has albums
+ * Band has members
+ * */

@@ -11,6 +11,10 @@ angular.module('angularMeetupApp', [])
             templateUrl: 'views/view-ingredient.html',
             controller: 'ViewIngredientCtrl'
           })
+          .when('/band-edit/:id', {
+            templateUrl: 'views/band-edit.html',
+            controller: 'BandEditCtrl'
+          })
           .otherwise({
             redirectTo: '/'
           });

@@ -3,8 +3,16 @@
 
   <p>Sample music app for the AngularJS meetup</p>
 </div>
+<h2>List of bands</h2>
+
 <ul>
   <li ng-repeat="item in awesomeThings">
     <a href="/#/menuItem/{{item._id}}">{{item.name}}</a>
   </li>
 </ul>
+
+<div style="margin-top: 20px;">
+  <a href="#/band-edit/new" class="btn btn-primary" data-ng-click="createNewBand()">
+    Create a new band
+  </a>
+</div>
