@@ -2,7 +2,8 @@ var mongo = require('mongodb');
 
 var Server = mongo.Server,
     Db = mongo.Db,
-    BSON = mongo.BSONPure;
+    BSON = mongo.BSONPure,
+    WINES = 'wines';
 
 var menuApp = {};
 
@@ -41,13 +42,13 @@ menuApp.findAll = function(collectionName, req, res) {
 };
 
 exports.findAll = function(req, res) {
-  menuApp.findAll('wines', req, res);
+  menuApp.findAll(WINES, req, res);
 };
 
 exports.addWine = function(req, res) {
   var wine = req.body;
   console.log('Adding wine: ' + JSON.stringify(wine));
-  db.collection('wines', function(err, collection) {
+  db.collection(WINES, function(err, collection) {
     collection.insert(wine, {safe: true}, function(err, result) {
       if (err) {
         res.send({'error': 'An error has occurred'});
@@ -64,7 +65,7 @@ exports.updateWine = function(req, res) {
   var wine = req.body;
   console.log('Updating wine: ' + id);
   console.log(JSON.stringify(wine));
-  db.collection('wines', function(err, collection) {
+  db.collection(WINES, function(err, collection) {
     collection.update({'_id': new BSON.ObjectID(id)}, wine, {safe: true}, function(err, result) {
       if (err) {
         console.log('Error updating wine: ' + err);
@@ -80,7 +81,7 @@ exports.updateWine = function(req, res) {
 exports.deleteWine = function(req, res) {
   var id = req.params.id;
   console.log('Deleting wine: ' + id);
-  db.collection('wines', function(err, collection) {
+  db.collection(WINES, function(err, collection) {
     collection.remove({'_id': new BSON.ObjectID(id)}, {safe: true}, function(err, result) {
       if (err) {
         res.send({'error': 'An error has occurred - ' + err});
@@ -117,7 +118,7 @@ var populateDB = function() {
       picture: "lan_rioja.jpg"
     }];
 
-  db.collection('wines', function(err, collection) {
+  db.collection(WINES, function(err, collection) {
     collection.insert(wines, {safe:true}, function(err, result) {});
   });
 

@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b99e9bdf-4fd8-4583-b2c7-0e598ad4202b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/wines.js" afterPath="$PROJECT_DIR$/routes/wines.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angular-meetup.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b99e9bdf-4fd8-4583-b2c7-0e598ad4202b" time="1368230322588" ignored="false" />
+    <file path="/Dummy.txt" changelist="b99e9bdf-4fd8-4583-b2c7-0e598ad4202b" time="1368231099824" ignored="false" />
     <file path="/main.html" changelist="b99e9bdf-4fd8-4583-b2c7-0e598ad4202b" time="1368153371807" ignored="false" />
     <file path="/a.dummy" changelist="b99e9bdf-4fd8-4583-b2c7-0e598ad4202b" time="1368149532407" ignored="false" />
     <file path="/main.js" changelist="b99e9bdf-4fd8-4583-b2c7-0e598ad4202b" time="1368153320984" ignored="false" />
@@ -51,7 +50,7 @@
       <file leaf-file-name="wines.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/wines.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="0" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.58201057">
+            <state line="115" column="20" selection-start="3339" selection-end="3339" vertical-scroll-proportion="0.5605469">
               <folding />
             </state>
           </provider>
@@ -223,7 +222,11 @@
       <created>1368230323892</created>
       <updated>1368230323892</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="find all generic">
+      <created>1368231101576</created>
+      <updated>1368231101576</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -291,7 +294,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="find all generic" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -311,6 +314,7 @@
     <MESSAGE value="add wine" />
     <MESSAGE value="show the list" />
     <MESSAGE value="formatting" />
+    <MESSAGE value="find all generic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -367,7 +371,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/wines.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="0" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.58201057">
+        <state line="115" column="20" selection-start="3339" selection-end="3339" vertical-scroll-proportion="0.5605469">
           <folding />
         </state>
       </provider>
