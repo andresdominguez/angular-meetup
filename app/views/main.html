@@ -1,10 +1,10 @@
 <div class="hero-unit">
-  <h1>Welcome to the restaurant app</h1>
+  <h1>Restaurant app</h1>
 
   <p>You now have</p>
-  <ul>
-    <li ng-repeat="thing in awesomeThings">{{thing.name}}</li>
-  </ul>
-
-
 </div>
+<ul>
+  <li ng-repeat="item in awesomeThings">
+    <a href="/#/menuItem/{{item._id}}">{{item.name}}</a>
+  </li>
+</ul>

@@ -23,21 +23,21 @@ db.open(function(err, db) {
   }
 });
 
+menuApp.findAll = function(collectionName, req, res) {
+  db.collection(collectionName, function(err, collection) {
+    collection.find().toArray(function(err, items) {
+      res.send(items);
+    });
+  });
+};
+
+
 exports.findById = function(req, res) {
   var id = req.params.id;
   console.log('Retrieving wine: ' + id);
   db.collection('wines', function(err, collection) {
     collection.findOne({'_id': new BSON.ObjectID(id)}, function(err, item) {
       res.send(item);
-    });
-  });
-};
-
-
-menuApp.findAll = function(collectionName, req, res) {
-  db.collection(collectionName, function(err, collection) {
-    collection.find().toArray(function(err, items) {
-      res.send(items);
     });
   });
 };
