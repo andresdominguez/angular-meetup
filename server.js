@@ -1,5 +1,5 @@
 var express = require('express'),
-    wine = require('./routes/wines'),
+    wine = require('./routes/band-server'),
     app = express();
 
 app.configure(function() {
