@@ -59,6 +59,41 @@ bandApp.createItem = function(collectionName, req, res) {
   });
 };
 
+bandApp.updateItem = function(collectionName, req, res) {
+  var id = req.params.id;
+  var item = req.body;
+  console.log('Updating item', collectionName, id);
+  console.log(JSON.stringify(item));
+  db.collection(collectionName, function(err, collection) {
+    collection.update({'_id': new BSON.ObjectID(id)}, item, {safe: true}, function(err, result) {
+      if (err) {
+        console.log('Error updating item: ' + err);
+        res.send({'error': 'An error has occurred'});
+      } else {
+        console.log('' + result + ' document(s) updated');
+        res.send(item);
+      }
+    });
+  });
+};
+
+bandApp.deleteItem = function(collectionName, req, res) {
+  var id = req.params.id;
+  console.log('Deleting item', collectionName, id);
+  db.collection(collectionName, function(err, collection) {
+    collection.remove({'_id': new BSON.ObjectID(id)}, {safe: true}, function(err, result) {
+      if (err) {
+        res.send({'error': 'An error has occurred - ' + err});
+      } else {
+        console.log('' + result + ' document(s) deleted');
+        res.send(req.body);
+      }
+    });
+  });
+};
+
+
+
 
 // Find all.
 exports.findAllBands = _.partial(bandApp.findAll, BANDS);
@@ -75,38 +110,17 @@ exports.createBand = _.partial(bandApp.createItem, BANDS);
 exports.createAlbum = _.partial(bandApp.createItem, ALBUMS);
 exports.createMember = _.partial(bandApp.createItem, MEMBERS);
 
-exports.updateWine = function(req, res) {
-  var id = req.params.id;
-  var wine = req.body;
-  console.log('Updating wine: ' + id);
-  console.log(JSON.stringify(wine));
-  db.collection(BANDS, function(err, collection) {
-    collection.update({'_id': new BSON.ObjectID(id)}, wine, {safe: true}, function(err, result) {
-      if (err) {
-        console.log('Error updating wine: ' + err);
-        res.send({'error': 'An error has occurred'});
-      } else {
-        console.log('' + result + ' document(s) updated');
-        res.send(wine);
-      }
-    });
-  });
-}
+// Update
+exports.updateBand = _.partial(bandApp.updateItem, BANDS);
+exports.updateAlbum = _.partial(bandApp.updateItem, ALBUMS);
+exports.updateMember = _.partial(bandApp.updateItem, MEMBERS);
 
-exports.deleteWine = function(req, res) {
-  var id = req.params.id;
-  console.log('Deleting wine: ' + id);
-  db.collection(BANDS, function(err, collection) {
-    collection.remove({'_id': new BSON.ObjectID(id)}, {safe: true}, function(err, result) {
-      if (err) {
-        res.send({'error': 'An error has occurred - ' + err});
-      } else {
-        console.log('' + result + ' document(s) deleted');
-        res.send(req.body);
-      }
-    });
-  });
-}
+// Delete
+exports.deleteBand = _.partial(bandApp.deleteItem, BANDS);
+exports.deleteAlbum = _.partial(bandApp.deleteItem, ALBUMS);
+exports.deleteMember = _.partial(bandApp.deleteItem, MEMBERS);
+
+
 
 var populateDB = function() {
   var bands = [
