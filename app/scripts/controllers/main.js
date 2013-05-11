@@ -17,3 +17,8 @@ app.controller('ViewIngredientCtrl', function($scope, $routeParams, $http) {
     $scope.item = data;
   });
 });
+
+/*
+* Band has albums
+* Band has members
+* */
