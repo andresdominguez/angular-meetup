@@ -4,6 +4,8 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
+var menuApp = {};
+
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('winedb', server);
 
@@ -29,12 +31,17 @@ exports.findById = function(req, res) {
   });
 };
 
-exports.findAll = function(req, res) {
-  db.collection('wines', function(err, collection) {
+
+menuApp.findAll = function(collectionName, req, res) {
+  db.collection(collectionName, function(err, collection) {
     collection.find().toArray(function(err, items) {
       res.send(items);
     });
   });
+};
+
+exports.findAll = function(req, res) {
+  menuApp.findAll('wines', req, res);
 };
 
 exports.addWine = function(req, res) {
