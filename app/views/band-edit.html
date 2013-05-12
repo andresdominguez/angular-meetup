@@ -17,9 +17,10 @@
     <label class="control-label">Members</label>
 
     <div class="controls">
-      <select data-ng-repeat="member in item.members">
-        <option value="">{{member.name}}</option>
+      <select>
+        <option data-ng-repeat="member in members">{{member.name}}</option>
       </select>
+      <button class="btn btn-small btn-primary">Add</button>
     </div>
   </div>
 
@@ -33,7 +34,7 @@
 
   <div class="control-group">
     <div class="controls">
-      <button class="btn btn-primary">Save</button>
+      <button class="btn btn-success">Save</button>
     </div>
   </div>
 

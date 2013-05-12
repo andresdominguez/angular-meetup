@@ -12,7 +12,10 @@ angular.module('angularMeetupApp').
         }
       });
 
+      var member = $resource('/members/:id', {}, {});
+
       return {
-        band: band
+        band: band,
+        member: member
       };
     });

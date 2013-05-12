@@ -6,5 +6,9 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
 
       apiService.band.get({id: bandId}, function(data) {
         $scope.item = data;
-      })
+      });
+
+      apiService.member.query({}, function(data) {
+        $scope.members = data;
+      });
     });
