@@ -59,12 +59,6 @@ ddescribe('Controller: BandEditCtrl', function() {
     fake.band.whenGetById().returnsDefault()
     fake.member.whenGetList().returnsDefault();
 
-    var band = {
-      name: 'Wu-Tang Clan',
-      albums: [],
-      members: []
-    };
-
     createController();
 
     expect(scope.item.name).toBe('Wu-Tang Clan');
