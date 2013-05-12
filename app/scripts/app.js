@@ -5,13 +5,9 @@ var app = angular.module('angularMeetupApp', ['ngResource']);
 app.config(function($routeProvider) {
   $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/band-list.html',
+        controller: 'BandListCtrl'
       })
-//          .when('/band-edit/:id', {
-//            templateUrl: 'views/band-edit.html',
-//            controller: 'BandEditCtrl'
-//          })
       .otherwise({
         redirectTo: '/'
       });
