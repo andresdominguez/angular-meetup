@@ -34,7 +34,9 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_) {
     band: {
       getById: function() {
         return {
-          name: 'Wu-Tang Clan'
+          name: 'Wu-Tang Clan',
+          albums: [],
+          members: []
         }
       },
       getList: function() {

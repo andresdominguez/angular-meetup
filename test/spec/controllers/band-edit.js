@@ -65,12 +65,9 @@ ddescribe('Controller: BandEditCtrl', function() {
       members: []
     };
 
-//    $httpBackend.whenGET('/bands/123').respond(band);
-
     createController();
 
     expect(scope.item.name).toBe('Wu-Tang Clan');
     expect(scope.members.length).toBe(2);
-
   });
 });
