@@ -23,13 +23,27 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_) {
   var createResource = function(settings) {
     return {
       whenGetById: _.partial(addWhenGet,
-          settings.list.url, settings.list.response),
+          settings.byId.url, settings.byId.response),
       whenGetList: _.partial(addWhenGet,
           settings.list.url, settings.list.response)
     }
   };
 
+
   var mock = {
+    band: {
+      getById: function() {
+        return {
+          name: 'Wu-Tang Clan'
+        }
+      },
+      getList: function() {
+        return [
+          {name: 'Wu-Tang clan'},
+          {name: 'The Police'}
+        ]
+      }
+    },
     member: {
       getById: function() {
         return {name: 'Method Man'}
@@ -43,19 +57,27 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_) {
     }
   };
 
-  var member = createResource({
-    byId: {
-      url: new RegExp('/members/[0-9]+'),
-      response: mock.member.getById()
-    },
-    list: {
-      url: '/members',
-      response: mock.member.getList()
-    }
-  });
-
-
   return {
-    member: member
+    band: createResource({
+      byId: {
+        url: new RegExp('/bands/[0-9]+'),
+        response: mock.band.getById
+      },
+      list: {
+        url: '/bands',
+        response: mock.band.getList
+      }
+    }),
+    member: createResource({
+      byId: {
+        url: new RegExp('/members/[0-9]+'),
+        response: mock.member.getById
+      },
+      list: {
+        url: '/members',
+        response: mock.member.getList
+      }
+    })
+
   };
 });

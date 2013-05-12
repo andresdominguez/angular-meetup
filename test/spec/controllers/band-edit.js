@@ -56,6 +56,7 @@ ddescribe('Controller: BandEditCtrl', function() {
   });
 
   it('should use the fake resource', function() {
+    fake.band.whenGetById().returnsDefault()
     fake.member.whenGetList().returnsDefault();
 
     var band = {
@@ -64,7 +65,7 @@ ddescribe('Controller: BandEditCtrl', function() {
       members: []
     };
 
-    $httpBackend.whenGET('/bands/123').respond(band);
+//    $httpBackend.whenGET('/bands/123').respond(band);
 
     createController();
 
