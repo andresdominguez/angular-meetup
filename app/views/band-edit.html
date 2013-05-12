@@ -1,0 +1,40 @@
+<div class="hero-unit">
+  <h1>Band</h1>
+</div>
+
+<form class="form-horizontal">
+  <legend>Band details</legend>
+
+  <div class="control-group">
+    <label class="control-label">Name:</label>
+
+    <div class="controls">
+      <input type="text" data-ng-model="item.name">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Members</label>
+
+    <div class="controls">
+      <select data-ng-repeat="member in item.members">
+        <option value="">{{member.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Albums</label>
+
+    <div class="controls">
+      <input type="text">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button class="btn btn-primary">Save</button>
+    </div>
+  </div>
+
+</form>

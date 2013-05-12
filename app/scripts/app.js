@@ -8,6 +8,10 @@ app.config(function($routeProvider) {
         templateUrl: 'views/band-list.html',
         controller: 'BandListCtrl'
       })
+      .when('/band-edit/:bandId', {
+        templateUrl: 'views/band-edit.html',
+        controller: 'BandEditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

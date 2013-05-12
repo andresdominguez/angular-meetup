@@ -6,6 +6,9 @@ angular.module('angularMeetupApp').
         query: {
           method: 'GET',
           isArray: true
+        },
+        get: {
+          method: 'GET'
         }
       });
 
