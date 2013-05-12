@@ -3,7 +3,11 @@
 </div>
 
 <form class="form-horizontal">
-  <legend>Band details</legend>
+  <legend>
+    Band details
+
+    <div data-ng-show="error">{{error}}</div>
+  </legend>
 
   <div class="control-group">
     <label class="control-label">Name:</label>
@@ -43,7 +47,8 @@
 
   <div class="control-group">
     <div class="controls">
-      <button class="btn btn-success">Save</button>
+      <button class="btn btn-success"
+              data-ng-click="saveBand()">Save</button>
     </div>
   </div>
 

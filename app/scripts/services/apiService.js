@@ -9,6 +9,9 @@ angular.module('angularMeetupApp').
         },
         get: {
           method: 'GET'
+        },
+        update: {
+          method: 'PUT'
         }
       });
 
