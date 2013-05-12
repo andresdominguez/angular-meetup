@@ -4,13 +4,15 @@ ddescribe('Controller: BandEditCtrl', function() {
 
   // load the controller's module
   beforeEach(module('angularMeetupApp'));
+  beforeEach(module('ControllerTestHelper'));
 
   var BandEditCtrl,
       scope,
       controller,
       rootScope,
       $httpBackend,
-      routeParams;
+      routeParams,
+      fake;
 
   var createController = function() {
     routeParams.bandId = 123;
@@ -24,11 +26,12 @@ ddescribe('Controller: BandEditCtrl', function() {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $routeParams) {
+  beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $routeParams, fakeResource) {
     controller = $controller;
     rootScope = $rootScope;
     $httpBackend = _$httpBackend_;
     routeParams = $routeParams;
+    fake = fakeResource;
   }));
 
   it('It should read band and members', function() {
@@ -50,5 +53,23 @@ ddescribe('Controller: BandEditCtrl', function() {
 
     expect(scope.item.name).toBe('Wu-Tang Clan');
     expect(scope.members.length).toBe(2);
+  });
+
+  it('should use the fake resource', function() {
+    fake.member.whenGetList().returnsDefault();
+
+    var band = {
+      name: 'Wu-Tang Clan',
+      albums: [],
+      members: []
+    };
+
+    $httpBackend.whenGET('/bands/123').respond(band);
+
+    createController();
+
+    expect(scope.item.name).toBe('Wu-Tang Clan');
+    expect(scope.members.length).toBe(2);
+
   });
 });
