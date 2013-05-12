@@ -17,10 +17,19 @@
     <label class="control-label">Members</label>
 
     <div class="controls">
-      <select>
-        <option data-ng-repeat="member in members">{{member.name}}</option>
+
+      <ul class="unstyled">
+        <li data-ng-repeat="member in item.members">
+          {{member.name}}
+          [<a href ng-click="item.members.splice($index, 1)">X</a>]
+        </li>
+      </ul>
+
+      <select data-ng-model="selectedMember"
+              data-ng-options="m.name for m in members">
+        <option value="">-- Chose new member --</option>
       </select>
-      <button class="btn btn-small btn-primary">Add</button>
+      <button class="btn btn-small btn-primary" data-ng-click="addMember(member)">Add</button>
     </div>
   </div>
 
