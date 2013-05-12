@@ -25,7 +25,7 @@
       <ul class="unstyled">
         <li data-ng-repeat="member in item.members">
           {{member.name}}
-          [<a href ng-click="item.members.splice($index, 1)">X</a>]
+          [<a href data-ng-click="removeMember(member)">X</a>]
         </li>
       </ul>
 

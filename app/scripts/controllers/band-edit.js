@@ -23,6 +23,10 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
             });
       };
 
+      $scope.removeMember = function(member) {
+        $scope.item.members = _.without($scope.item.members, member);
+      };
+
       apiService.band.get({id: bandId}, function(data) {
         $scope.item = data;
       });
