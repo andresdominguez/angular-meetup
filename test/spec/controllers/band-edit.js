@@ -31,7 +31,7 @@ ddescribe('Controller: BandEditCtrl', function() {
     routeParams = $routeParams;
   }));
 
-  it('should attach a list of awesomeThings to the scope', function() {
+  it('It should read band and members', function() {
     var band = {
       name: 'Wu-Tang Clan',
       albums: [],
