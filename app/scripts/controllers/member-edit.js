@@ -1,9 +1,21 @@
 'use strict';
 
 angular.module('angularMeetupApp')
-    .controller('MemberEditCtrl', function($scope, $routeParams, apiService) {
+    .controller('MemberEditCtrl', function($scope, $routeParams, apiService, $location) {
 
-      apiService.member.get({id: $routeParams.memberId}, function(data) {
+      var memberId = $routeParams.memberId;
+
+      apiService.member.get({id: memberId}, function(data) {
         $scope.item = data;
-      })
+      });
+
+      $scope.delete = function() {
+        apiService.member.delete({id: memberId}, function() {
+          $location.path('/member-list');
+        });
+      };
+
+      $scope.save = function() {
+
+      };
     });
