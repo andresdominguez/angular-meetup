@@ -1,34 +1,40 @@
 var testHelper = angular.module('ControllerTestHelper', ['angularMeetupApp']);
 
-testHelper.service('fakeResource', function(apiService, _$httpBackend_) {
+testHelper.service('fakeResource', function(apiService, _$httpBackend_, apiService) {
   var h = _$httpBackend_;
 
-  var addReturns = function(requestHandler, response) {
-    requestHandler.respond(_.isFunction(response) ? response() : response);
-  };
-
-  var addWhenGet = function(url, defaultResponse) {
-    var requestHandler = h.whenGET(url);
-
-    return {
-      returnsDefault: function() {
-        addReturns(requestHandler, defaultResponse)
-      },
-      returns: function(response) {
-        addReturns(requestHandler, response)
-      }
-    }
-  };
-
   var createResource = function(settings) {
+    var spy;
+
+    var addReturns = function(requestHandler, response) {
+      requestHandler.respond(_.isFunction(response) ? response() : response);
+    };
+
+    var addWhenGet = function(resource, settings) {
+      var requestHandler = h.whenGET(settings.url);
+
+      if (!spy) {
+        spy = spyOn(resource, settings.method).andCallThrough();
+      }
+
+      return {
+        returnsDefault: function() {
+          addReturns(requestHandler, settings.response)
+        },
+        returns: function(response) {
+          addReturns(requestHandler, response)
+        }
+      }
+    };
+
     return {
-      whenGetById: _.partial(addWhenGet,
-          settings.byId.url, settings.byId.response),
-      whenGetList: _.partial(addWhenGet,
-          settings.list.url, settings.list.response)
+      getSpy: function() {
+        return spy;
+      },
+      whenGetById: _.partial(addWhenGet, settings.resource, settings.byId),
+      whenGetList: _.partial(addWhenGet, settings.resource, settings.list)
     }
   };
-
 
   var mock = {
     band: {
@@ -61,23 +67,29 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_) {
 
   return {
     band: createResource({
+      resource: apiService.band,
       byId: {
         url: new RegExp('/bands/[0-9]+'),
-        response: mock.band.getById
+        response: mock.band.getById,
+        method: 'get'
       },
       list: {
         url: '/bands',
-        response: mock.band.getList
+        response: mock.band.getList,
+        method: 'query'
       }
     }),
     member: createResource({
+      resource: apiService.member,
       byId: {
         url: new RegExp('/members/[0-9]+'),
-        response: mock.member.getById
+        response: mock.member.getById,
+        method: 'get'
       },
       list: {
         url: '/members',
-        response: mock.member.getList
+        response: mock.member.getList,
+        method: 'query'
       }
     })
 

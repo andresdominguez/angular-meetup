@@ -6,6 +6,15 @@ ddescribe('Controller: BandEditCtrl', function() {
   beforeEach(module('angularMeetupApp'));
   beforeEach(module('ControllerTestHelper'));
 
+  beforeEach(function() {
+    this.addMatchers({
+      toHaveBeenRequested: function(expected) {
+        var spy = this.actual.getSpy();
+        return spy.callCount > 0;
+      }
+    });
+  });
+
   var BandEditCtrl,
       scope,
       controller,
@@ -56,12 +65,14 @@ ddescribe('Controller: BandEditCtrl', function() {
   });
 
   it('should use the fake resource', function() {
-    fake.band.whenGetById().returnsDefault()
+    fake.band.whenGetById().returnsDefault();
     fake.member.whenGetList().returnsDefault();
 
     createController();
 
     expect(scope.item.name).toBe('Wu-Tang Clan');
     expect(scope.members.length).toBe(2);
+
+    expect(fake.band).toHaveBeenRequested();
   });
 });
