@@ -1,6 +1,6 @@
 var testHelper = angular.module('ControllerTestHelper', ['angularMeetupApp']);
 
-testHelper.service('fakeResource', function(apiService, _$httpBackend_, apiService) {
+testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
   var h = _$httpBackend_;
 
   var createResource = function(settings) {
@@ -14,6 +14,7 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, apiServi
       var requestHandler = h.whenGET(settings.url);
 
       if (!spy) {
+        console.log('Creating spy for', resource, settings);
         spy = spyOn(resource, settings.method).andCallThrough();
       }
 
@@ -36,46 +37,17 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, apiServi
     }
   };
 
-  var mock = {
-    band: {
-      getById: function() {
-        return {
-          name: 'Wu-Tang Clan',
-          albums: [],
-          members: []
-        }
-      },
-      getList: function() {
-        return [
-          {name: 'Wu-Tang clan'},
-          {name: 'The Police'}
-        ]
-      }
-    },
-    member: {
-      getById: function() {
-        return {name: 'Method Man'}
-      },
-      getList: function() {
-        return [
-          {name: 'Method Man'},
-          {name: 'Ghostface Killah'}
-        ];
-      }
-    }
-  };
-
   return {
     band: createResource({
       resource: apiService.band,
       byId: {
         url: new RegExp('/bands/[0-9]+'),
-        response: mock.band.getById,
+        response: mocks.band.getById,
         method: 'get'
       },
       list: {
         url: '/bands',
-        response: mock.band.getList,
+        response: mocks.band.getList,
         method: 'query'
       }
     }),
@@ -83,12 +55,12 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, apiServi
       resource: apiService.member,
       byId: {
         url: new RegExp('/members/[0-9]+'),
-        response: mock.member.getById,
+        response: mocks.member.getById,
         method: 'get'
       },
       list: {
         url: '/members',
-        response: mock.member.getList,
+        response: mocks.member.getList,
         method: 'query'
       }
     })

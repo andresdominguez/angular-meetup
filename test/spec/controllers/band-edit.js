@@ -74,5 +74,6 @@ ddescribe('Controller: BandEditCtrl', function() {
     expect(scope.members.length).toBe(2);
 
     expect(fake.band).toHaveBeenRequested();
+//    expect(fake.members).toHaveBeenRequested();
   });
 });
