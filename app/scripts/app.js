@@ -16,6 +16,10 @@ app.config(function($routeProvider) {
         templateUrl: 'views/member-list.html',
         controller: 'MemberListCtrl'
       })
+      .when('/member-edit/:memberId', {
+        templateUrl: 'views/member-edit.html',
+        controller: 'MemberEditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

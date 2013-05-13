@@ -1,0 +1,34 @@
+<div style="margin: 0 30px;">
+  <div class="hero-unit">
+    <h1>Band member</h1>
+  </div>
+  <div style="margin-left: 20px;">
+    <form class="form-horizontal">
+      <legend>Edit band member</legend>
+
+      <div class="control-group">
+        <label class="control-label">ID</label>
+
+        <div class="controls">
+          <input type="text" readonly data-ng-model="item._id">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Name</label>
+
+        <div class="controls">
+          <input type="text" data-ng-model="item.name">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <button class="btn btn-primary">Save</button>
+          <button class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
