@@ -1,0 +1,13 @@
+<div style="margin: 0 30px;">
+  <div class="hero-unit">
+    <h1>Member list</h1>
+  </div>
+  <div style="margin-left: 20px;">
+    <h2>Band members</h2>
+    <ul class="unstyled">
+      <li data-ng-repeat="item in list">
+        <a href="#/edit-member/{{item._id}}">{{item.name}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
