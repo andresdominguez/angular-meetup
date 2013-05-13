@@ -5,9 +5,11 @@ angular.module('angularMeetupApp')
 
       var memberId = $routeParams.memberId;
 
-      apiService.member.get({id: memberId}, function(data) {
-        $scope.item = data;
-      });
+      if (memberId !== 'new') {
+        apiService.member.get({id: memberId}, function(data) {
+          $scope.item = data;
+        });
+      }
 
       $scope.delete = function() {
         apiService.member.delete({id: memberId}, function() {
@@ -16,6 +18,9 @@ angular.module('angularMeetupApp')
       };
 
       $scope.save = function() {
-
+        apiService.member.save({}, $scope.item,
+            function(newItem, b) {
+              $scope.item = newItem;
+            })
       };
     });
