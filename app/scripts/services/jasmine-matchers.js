@@ -54,6 +54,23 @@ angular.module('angularMeetupApp')
           }
 
           return  wasCalled;
+        },
+        toHaveBeenUpdatedWith: function(expected) {
+          var spy = this.actual.getUpdateSpy();
+
+          var item = spy.mostRecentCall.args[1];
+
+          var allPropertiesMatch = _.all(expected, function(value, key) {
+            return angular.equals(value, item[key]);
+          });
+
+          if (!allPropertiesMatch) {
+            this.message = function() {
+              return 'Expected ' + JSON.stringify(item) + ' to match ' + JSON.stringify(expected);
+            }
+          }
+
+          return allPropertiesMatch;
         }
       };
     });

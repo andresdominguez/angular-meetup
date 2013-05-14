@@ -124,15 +124,17 @@ ddescribe('Controller: BandEditCtrl', function() {
     createController(123);
     fake.flush();
 
-    // When you update the band.
+    // When you update the band with a new name.
     expect(scope.message).toBeUndefined();
+    scope.item.name = 'Bboys';
     scope.saveBand();
     fake.flush();
 
     // Then ensure a message is shown.
     expect(scope.message).toEqual('Band updated');
-    
+
     // And ensure the band was updated.
     expect(fake.band).toHaveBeenUpdated();
+    expect(fake.band).toHaveBeenUpdatedWith({name: 'Bboys'});
   });
 });
