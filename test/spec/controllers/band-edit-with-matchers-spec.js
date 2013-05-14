@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: BandEditCtrl', function() {
+ddescribe('Controller: BandEditCtrl', function() {
 
   beforeEach(module('angularMeetupApp', 'ControllerTestHelper'));
 
