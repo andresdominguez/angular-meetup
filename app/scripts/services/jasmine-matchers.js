@@ -16,6 +16,16 @@ angular.module('angularMeetupApp')
             return false;
           }
           return spy.callCount > 0;
+        },
+        toHaveBeenCreated: function(expected) {
+          var spy = this.actual.getCreateSpy();
+          if(!spy) {
+            this.message = function() {
+              return 'You did not set a when or expect for the resource';
+            };
+            return false;
+          }
+          return spy.callCount > 0;
         }
       };
     });

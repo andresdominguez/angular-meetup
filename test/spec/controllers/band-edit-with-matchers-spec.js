@@ -53,7 +53,7 @@ ddescribe('Controller: BandEditCtrl', function() {
     expect(scope.albums.length).toEqual(2);
     expect(scope.members.length).toEqual(3);
 
-    // Ensure the data was requested.
+    // Ensure the resources were requested.
     expect(fake.album).toHaveBeenRequested();
     expect(fake.band).toHaveBeenRequested();
     expect(fake.member).toHaveBeenRequested();
@@ -75,6 +75,11 @@ ddescribe('Controller: BandEditCtrl', function() {
     // And ensure the albums and the members were loaded.
     expect(scope.albums.length).toEqual(2);
     expect(scope.members.length).toEqual(3);
+
+    // Ensure the resources were requested.
+    expect(fake.album).toHaveBeenRequested();
+    expect(fake.band).not.toHaveBeenRequested();
+    expect(fake.member).toHaveBeenRequested();
   });
 
   it('should create new band', function() {
@@ -98,6 +103,12 @@ ddescribe('Controller: BandEditCtrl', function() {
 
     // Then ensure the album was created with id 1.
     expect(scope.item).toEqualData({id: 1, name: 'Beastie boys'});
+
+    // Ensure the resources were requested.
+    expect(fake.album).toHaveBeenRequested();
+    expect(fake.band).not.toHaveBeenRequested();
+    expect(fake.member).toHaveBeenRequested();
+    expect(fake.band).toHaveBeenCreated();
   });
 
   it('should update an existing band', function() {

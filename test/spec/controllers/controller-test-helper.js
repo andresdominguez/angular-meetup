@@ -4,7 +4,7 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
   var h = _$httpBackend_;
 
   var createResource = function(settings) {
-    var spy;
+    var getSpy, createSpy;
 
     var addReturns = function(requestHandler, response) {
       requestHandler.respond(_.isFunction(response) ? response() : response);
@@ -13,8 +13,8 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
     var addWhenGet = function(resource, settings) {
       var requestHandler = h.whenGET(settings.url);
 
-      if (!spy) {
-        spy = spyOn(resource, settings.method).andCallThrough();
+      if (!getSpy) {
+        getSpy = spyOn(resource, settings.method).andCallThrough();
       }
 
       return {
@@ -27,8 +27,12 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
       }
     };
 
-    var addWhenCreate = function(settings) {
+    var addWhenCreate = function(resource, settings) {
       var requestHandler = h.whenPOST(settings.url);
+
+      if (!createSpy) {
+        createSpy = spyOn(resource, settings.method).andCallThrough();
+      }
 
       return {
         returns: function(data) {
@@ -49,11 +53,14 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
 
     return {
       getSpy: function() {
-        return spy;
+        return getSpy;
+      },
+      getCreateSpy: function() {
+        return createSpy;
       },
       whenGetById: _.partial(addWhenGet, settings.resource, settings.byId),
       whenGetList: _.partial(addWhenGet, settings.resource, settings.list),
-      whenCreate: _.partial(addWhenCreate, settings.create),
+      whenCreate: _.partial(addWhenCreate, settings.resource, settings.create),
       whenUpdate: _.partial(addWhenUpdate, settings.update)
     }
   };
