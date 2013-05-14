@@ -2,7 +2,6 @@
 
 ddescribe('Controller: BandEditCtrl', function() {
 
-  // load the controller's module
   beforeEach(module('angularMeetupApp'));
 
   beforeEach(function() {
