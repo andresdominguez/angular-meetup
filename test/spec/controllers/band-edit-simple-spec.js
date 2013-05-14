@@ -114,4 +114,25 @@ ddescribe('Controller: BandEditCtrl', function() {
     // Then ensure the album was created with id 1.
     expect(scope.item).toEqualData({id: 1, name: 'Beastie boys'});
   });
+
+  it('should update an existing band', function() {
+    $httpBackend.whenGET('/bands/123').respond(band);
+    $httpBackend.whenGET('/albums').respond(albums);
+    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenPUT('/bands/123').respond({
+      id: 1,
+      name: 'Beastie boys'
+    });
+
+    // Given that you load an existing band.
+    createController(123);
+    $httpBackend.flush();
+
+    // When you update the band.
+    scope.saveBand();
+    $httpBackend.flush();
+
+    // Then ensure a message is shown.
+    expect(scope.message).toEqual('Band updated');
+  });
 });
