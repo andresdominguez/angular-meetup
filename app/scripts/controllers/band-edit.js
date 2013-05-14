@@ -20,8 +20,14 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
         $scope.albums = data;
       });
 
+      // Add a new member.
       $scope.addMember = function() {
         $scope.item.members.push($scope.selectedMember);
+      };
+
+      // Remove a member.
+      $scope.removeMember = function(member) {
+        $scope.item.members = _.without($scope.item.members, member);
       };
 
       var handleError = function(response) {
@@ -51,9 +57,4 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
               }, handleError);
         }
       };
-
-      $scope.removeMember = function(member) {
-        $scope.item.members = _.without($scope.item.members, member);
-      };
-
     });
