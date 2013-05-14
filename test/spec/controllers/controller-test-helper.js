@@ -37,13 +37,24 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
       }
     };
 
+    var addWhenUpdate = function(settings) {
+      var requestHandler = h.whenPUT(settings.url);
+
+      return {
+        returns: function(data) {
+          requestHandler.respond(data);
+        }
+      }
+    };
+
     return {
       getSpy: function() {
         return spy;
       },
       whenGetById: _.partial(addWhenGet, settings.resource, settings.byId),
       whenGetList: _.partial(addWhenGet, settings.resource, settings.list),
-      whenCreate: _.partial(addWhenCreate, settings.create)
+      whenCreate: _.partial(addWhenCreate, settings.create),
+      whenUpdate: _.partial(addWhenUpdate, settings.update)
     }
   };
 
@@ -76,6 +87,10 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
       create: {
         url: '/bands',
         method: 'save'
+      },
+      update: {
+        url: new RegExp('/bands/[0-9]+'),
+        method: 'update'
       }
     }),
     member: createResource({

@@ -31,10 +31,9 @@ ddescribe('Controller: BandEditCtrl', function() {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $routeParams, mocks, fakeResource) {
+  beforeEach(inject(function($controller, $rootScope, $routeParams, mocks, fakeResource) {
     controller = $controller;
     rootScope = $rootScope;
-    $httpBackend = _$httpBackend_;
     routeParams = $routeParams;
     theMocks = mocks;
     fake = fakeResource;
@@ -81,7 +80,7 @@ ddescribe('Controller: BandEditCtrl', function() {
   it('should create new band', function() {
     fake.album.whenGetList().returnsDefault();
     fake.member.whenGetList().returnsDefault();
-    $httpBackend.whenPOST('/bands').respond({
+    fake.band.whenCreate().returns({
       id: 1,
       name: 'Beastie boys'
     });
@@ -102,10 +101,10 @@ ddescribe('Controller: BandEditCtrl', function() {
   });
 
   it('should update an existing band', function() {
-    $httpBackend.whenGET('/bands/123').respond(theMocks.band.getById());
+    fake.band.whenGetById().returnsDefault();
     fake.album.whenGetList().returnsDefault();
     fake.member.whenGetList().returnsDefault();
-    $httpBackend.whenPUT('/bands/123').respond({
+    fake.band.whenUpdate().returns({
       id: 1,
       name: 'Beastie boys'
     });
