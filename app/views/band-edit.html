@@ -1,55 +1,58 @@
 <div class="hero-unit">
   <h1>Band</h1>
+  <p>Edit the band information</p>
 </div>
+<div style="padding-left: 60px;">
+  <form class="form-horizontal">
+    <legend>
+      Band details
 
-<form class="form-horizontal">
-  <legend>
-    Band details
+      <div data-ng-show="error">{{error}}</div>
+    </legend>
 
-    <div data-ng-show="error">{{error}}</div>
-  </legend>
+    <div class="control-group">
+      <label class="control-label">Name:</label>
 
-  <div class="control-group">
-    <label class="control-label">Name:</label>
-
-    <div class="controls">
-      <input type="text" data-ng-model="item.name">
+      <div class="controls">
+        <input type="text" data-ng-model="item.name">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <label class="control-label">Members</label>
+    <div class="control-group">
+      <label class="control-label">Members</label>
 
-    <div class="controls">
+      <div class="controls">
 
-      <ul class="unstyled">
-        <li data-ng-repeat="member in item.members">
-          {{member.name}}
-          [<a href data-ng-click="removeMember(member)">X</a>]
-        </li>
-      </ul>
+        <ul class="unstyled">
+          <li data-ng-repeat="member in item.members">
+            {{member.name}}
+            [<a href data-ng-click="removeMember(member)">X</a>]
+          </li>
+        </ul>
 
-      <select data-ng-model="selectedMember"
-              data-ng-options="m.name for m in members">
-        <option value="">-- Chose new member --</option>
-      </select>
-      <button class="btn btn-small btn-primary" data-ng-click="addMember(member)">Add</button>
+        <select data-ng-model="selectedMember"
+                data-ng-options="m.name for m in members">
+          <option value="">-- Chose new member --</option>
+        </select>
+        <button class="btn btn-small btn-primary" data-ng-click="addMember(member)">Add</button>
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <label class="control-label">Albums</label>
+    <div class="control-group">
+      <label class="control-label">Albums</label>
 
-    <div class="controls">
-      <input type="text">
+      <div class="controls">
+        <input type="text">
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <div class="controls">
-      <button class="btn btn-success"
-              data-ng-click="saveBand()">Save</button>
+    <div class="control-group">
+      <div class="controls">
+        <button class="btn btn-success"
+                data-ng-click="saveBand()">Save
+        </button>
+      </div>
     </div>
-  </div>
 
-</form>
+  </form>
+</div>
