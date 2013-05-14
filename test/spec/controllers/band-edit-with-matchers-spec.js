@@ -53,7 +53,10 @@ ddescribe('Controller: BandEditCtrl', function() {
     expect(scope.albums.length).toEqual(2);
     expect(scope.members.length).toEqual(3);
 
+    // Ensure the data was requested.
     expect(fake.album).toHaveBeenRequested();
+    expect(fake.band).toHaveBeenRequested();
+    expect(fake.member).toHaveBeenRequested();
   });
 
   it('should load data for new band', function() {
