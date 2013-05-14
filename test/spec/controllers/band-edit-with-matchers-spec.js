@@ -131,5 +131,8 @@ ddescribe('Controller: BandEditCtrl', function() {
 
     // Then ensure a message is shown.
     expect(scope.message).toEqual('Band updated');
+    
+    // And ensure the band was updated.
+    expect(fake.band).toHaveBeenUpdated();
   });
 });
