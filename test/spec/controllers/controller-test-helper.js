@@ -38,6 +38,14 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
   };
 
   return {
+    album: createResource({
+      resource: apiService.album,
+      list: {
+        url:  '/albums',
+        response: mocks.band.getList,
+        method: 'query'
+      }
+    }),
     band: createResource({
       resource: apiService.band,
       byId: {
