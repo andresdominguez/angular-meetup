@@ -12,6 +12,7 @@ angular.module('angularMeetupApp')
       }
 
       var handleError = function(response) {
+        debugger;
         $scope.error = response.data;
       };
 
@@ -31,20 +32,15 @@ angular.module('angularMeetupApp')
         if (isNew) {
           apiService.member.save($scope.item,
               function(newItem) {
+                debugger;
                 $scope.item = newItem;
                 $scope.message = 'Member created';
               }, handleError)
         } else {
-          apiService.album.update({id: albumId}, _.omit(item, '_id'),
-              function() {
+          apiService.member.update({id: memberId}, _.omit(item, '_id'),
+              function(updatedItem) {
                 $scope.message = 'Member updated'
               }, handleError);
         }
-
-
-        apiService.member.save({}, $scope.item,
-            function(newItem, b) {
-              $scope.item = newItem;
-            })
       };
     });
