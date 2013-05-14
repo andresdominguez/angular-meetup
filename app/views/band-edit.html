@@ -1,13 +1,16 @@
 <div class="hero-unit">
   <h1>Band</h1>
+
   <p>Edit the band information</p>
 </div>
 <div style="padding-left: 60px;">
   <form class="form-horizontal">
     <legend>
       Band details
-      <div data-ng-show="error">{{error}}</div>
     </legend>
+
+    <h4 data-ng-show="error" data-ng-bind="error" class="alert-block alert-error"></h4>
+    <h4 data-ng-show="message" data-ng-bind="message" class="alert-block alert-success"></h4>
 
     <div class="control-group">
       <label class="control-label">ID</label>
