@@ -4,19 +4,14 @@ ddescribe('Controller: BandEditCtrl', function() {
 
   beforeEach(module('angularMeetupApp', 'ControllerTestHelper'));
 
-  beforeEach(function() {
-    this.addMatchers({
-      toEqualData: function(expected) {
-        return angular.equals(this.actual, expected);
-      }
-    });
-  });
+  beforeEach(inject(function(jasmineMatchers) {
+    this.addMatchers(jasmineMatchers);
+  }));
 
   var BandEditCtrl,
       scope,
       controller,
       rootScope,
-      $httpBackend,
       routeParams,
       theMocks,
       fake;
@@ -57,6 +52,8 @@ ddescribe('Controller: BandEditCtrl', function() {
     expect(scope.item).toEqualData(theMocks.band.getById());
     expect(scope.albums.length).toEqual(2);
     expect(scope.members.length).toEqual(3);
+
+    expect(fake.album).toHaveBeenRequested();
   });
 
   it('should load data for new band', function() {
