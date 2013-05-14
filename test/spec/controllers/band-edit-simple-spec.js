@@ -129,6 +129,7 @@ ddescribe('Controller: BandEditCtrl', function() {
     $httpBackend.flush();
 
     // When you update the band.
+    expect(scope.message).toBeUndefined();
     scope.saveBand();
     $httpBackend.flush();
 
