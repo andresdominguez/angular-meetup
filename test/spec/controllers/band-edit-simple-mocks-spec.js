@@ -17,24 +17,8 @@ ddescribe('Controller: BandEditCtrl', function() {
       controller,
       rootScope,
       $httpBackend,
-      routeParams;
-
-  var band = {
-    name: 'Beastie boys',
-    albums: [],
-    members: []
-  };
-
-  var members = [
-    {name: 'Michael "Mike D" Diamond'},
-    {name: 'Adam "Ad-Rock" Horovitz'},
-    {name: 'Adam "MCA" Yauch'}
-  ];
-
-  var albums = [
-    {name: 'Check your head'},
-    {name: 'Pauls boutique'}
-  ];
+      routeParams,
+      theMocks;
 
   var createController = function(bandId) {
     routeParams.bandId = bandId;
@@ -46,17 +30,18 @@ ddescribe('Controller: BandEditCtrl', function() {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $routeParams) {
+  beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $routeParams, mocks) {
     controller = $controller;
     rootScope = $rootScope;
     $httpBackend = _$httpBackend_;
     routeParams = $routeParams;
+    theMocks = mocks;
   }));
 
   it('should load existing band', function() {
-    $httpBackend.whenGET('/bands/123').respond(band);
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenGET('/bands/123').respond(theMocks.band.getById());
+    $httpBackend.whenGET('/albums').respond(theMocks.album.getList());
+    $httpBackend.whenGET('/members').respond(theMocks.member.getList());
 
     // Given that you load an exiting band.
     createController(123);
@@ -68,14 +53,14 @@ ddescribe('Controller: BandEditCtrl', function() {
     $httpBackend.flush();
 
     // Then ensure the scope variables contain the data.
-    expect(scope.item).toEqualData(band);
+    expect(scope.item).toEqualData(theMocks.band.getById());
     expect(scope.albums.length).toEqual(2);
     expect(scope.members.length).toEqual(3);
   });
 
   it('should load data for new band', function() {
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenGET('/albums').respond(theMocks.album.getList());
+    $httpBackend.whenGET('/members').respond(theMocks.member.getList());
 
     // Given that you load a new band.
     createController('new');
@@ -92,8 +77,8 @@ ddescribe('Controller: BandEditCtrl', function() {
   });
 
   it('should create new band', function() {
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenGET('/albums').respond(theMocks.album.getList());
+    $httpBackend.whenGET('/members').respond(theMocks.member.getList());
     $httpBackend.whenPOST('/bands').respond({
       id: 1,
       name: 'Beastie boys'
@@ -115,9 +100,9 @@ ddescribe('Controller: BandEditCtrl', function() {
   });
 
   it('should update an existing band', function() {
-    $httpBackend.whenGET('/bands/123').respond(band);
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenGET('/bands/123').respond(theMocks.band.getById());
+    $httpBackend.whenGET('/albums').respond(theMocks.album.getList());
+    $httpBackend.whenGET('/members').respond(theMocks.member.getList());
     $httpBackend.whenPUT('/bands/123').respond({
       id: 1,
       name: 'Beastie boys'
