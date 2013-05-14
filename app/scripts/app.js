@@ -5,6 +5,10 @@ var app = angular.module('angularMeetupApp', ['ngResource']);
 app.config(function($routeProvider) {
   $routeProvider
       .when('/', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/band-list', {
         templateUrl: 'views/band-list.html',
         controller: 'BandListCtrl'
       })
@@ -19,6 +23,14 @@ app.config(function($routeProvider) {
       .when('/member-edit/:memberId', {
         templateUrl: 'views/member-edit.html',
         controller: 'MemberEditCtrl'
+      })
+      .when('/album-list', {
+        templateUrl: 'views/album-list.html',
+        controller: 'AlbumListCtrl'
+      })
+      .when('/album-edit', {
+        templateUrl: 'views/album-edit.html',
+        controller: 'AlbumEditCtrl'
       })
       .otherwise({
         redirectTo: '/'
