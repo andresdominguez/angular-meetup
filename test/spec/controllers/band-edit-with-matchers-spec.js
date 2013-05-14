@@ -52,7 +52,7 @@ ddescribe('Controller: BandEditCtrl', function() {
     expect(scope.members).toBeUndefined();
 
     // When you receive the data.
-    $httpBackend.flush();
+    fake.flush();
 
     // Then ensure the scope variables contain the data.
     expect(scope.item).toEqualData(theMocks.band.getById());
@@ -68,7 +68,7 @@ ddescribe('Controller: BandEditCtrl', function() {
     createController('new');
 
     // When you receive the data.
-    $httpBackend.flush();
+    fake.flush();
 
     // Then ensure the album is undefined.
     expect(scope.item).toBeUndefined();
@@ -88,14 +88,14 @@ ddescribe('Controller: BandEditCtrl', function() {
 
     // Given that you load a new band.
     createController('new');
-    $httpBackend.flush();
+    fake.flush();
 
     // When you add a new band.
     scope.item = {
       name: 'Beastie boys'
     };
     scope.saveBand();
-    $httpBackend.flush();
+    fake.flush();
 
     // Then ensure the album was created with id 1.
     expect(scope.item).toEqualData({id: 1, name: 'Beastie boys'});
@@ -112,12 +112,12 @@ ddescribe('Controller: BandEditCtrl', function() {
 
     // Given that you load an existing band.
     createController(123);
-    $httpBackend.flush();
+    fake.flush();
 
     // When you update the band.
     expect(scope.message).toBeUndefined();
     scope.saveBand();
-    $httpBackend.flush();
+    fake.flush();
 
     // Then ensure a message is shown.
     expect(scope.message).toEqual('Band updated');
