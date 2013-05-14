@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMeetupApp').controller('AlbumEditCtrl',
-    function($scope, $routeParams, apiService) {
+    function($scope, $routeParams, apiService, $location) {
       var albumId = $routeParams.albumId;
       if (albumId !== 'new') {
         apiService.album.get({id: albumId}, function(data) {
@@ -10,7 +10,6 @@ angular.module('angularMeetupApp').controller('AlbumEditCtrl',
       }
 
       var handleError = function(data) {
-        debugger;
         $scope.error = data;
       };
 
@@ -29,5 +28,11 @@ angular.module('angularMeetupApp').controller('AlbumEditCtrl',
                 $scope.message = 'Item saved'
               }, handleError);
         }
+      }
+
+      $scope.delete = function() {
+        apiService.album.delete({id: albumId}, function(a) {
+        }, handleError);
+        $location.path('/album-list');
       }
     });
