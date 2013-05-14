@@ -1,0 +1,35 @@
+<div>
+  <div class="hero-unit">
+    <h1>Album</h1>
+    <p>Album properties page</p>
+  </div>
+  <div style="padding-left: 60px;">
+    <form class="form-horizontal">
+      <legend>Edit album</legend>
+
+      <div class="control-group">
+        <label class="control-label">ID</label>
+
+        <div class="controls">
+          <input type="text" readonly data-ng-model="item._id">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Name</label>
+
+        <div class="controls">
+          <input type="text" data-ng-model="item.name">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <button class="btn btn-primary" data-ng-click="save()">Save</button>
+          <button class="btn btn-danger" data-ng-click="delete()">Delete</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
