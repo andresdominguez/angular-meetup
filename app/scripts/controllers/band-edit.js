@@ -25,6 +25,11 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
         $scope.item.members.push($scope.selectedMember);
       };
 
+      // Add a new album.
+      $scope.addAlbum = function() {
+        $scope.item.albums.push($scope.selectedAlbum);
+      };
+
       // Remove a member.
       $scope.removeMember = function(member) {
         $scope.item.members = _.without($scope.item.members, member);
