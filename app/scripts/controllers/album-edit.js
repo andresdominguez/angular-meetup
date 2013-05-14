@@ -21,11 +21,12 @@ angular.module('angularMeetupApp').controller('AlbumEditCtrl',
         if (isNew) {
           apiService.album.save(item, function(newItem) {
             $scope.item = newItem;
+            $scope.message = 'Album created'
           }, handleError);
         } else {
           apiService.album.update({id: albumId}, _.omit(item, '_id'),
               function() {
-                $scope.message = 'Item saved'
+                $scope.message = 'Album updated'
               }, handleError);
         }
       }

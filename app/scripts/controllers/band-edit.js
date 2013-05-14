@@ -4,34 +4,56 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
     function($scope, $routeParams, apiService) {
       var bandId = $routeParams.bandId;
 
+      if (bandId !== 'new') {
+        apiService.band.get({id: bandId}, function(data) {
+          $scope.item = data;
+        });
+      }
+
+      // Get members.
+      apiService.member.query({}, function(data) {
+        $scope.members = data;
+      });
+
+      // Get albums.
+      apiService.album.query(function(data) {
+        $scope.albums = data;
+      });
+
       $scope.addMember = function() {
         $scope.item.members.push($scope.selectedMember);
       };
 
-      $scope.saveBand = function() {
-        var item = angular.copy($scope.item);
-        var id = item._id;
-        delete item._id;
+      var handleError = function(response) {
+        $scope.error = response.data;
+      };
 
-        apiService.band.update(
-            {id: id},
-            item,
-            function(a, b, c) {
-              debugger;
-            }, function(a, b, c) {
-              $scope.error = a.data;
-            });
+      $scope.saveBand = function() {
+        $scope.message = '';
+
+        var isNew = bandId === 'new',
+            item = angular.copy($scope.item);
+
+        if (isNew) {
+          apiService.band.save(
+              item,
+              function(newItem) {
+                $scope.item = newItem;
+                $scope.message = 'Band created';
+              }, handleError);
+
+        } else {
+          apiService.band.update(
+              {id: bandId},
+              _.omit(item, '_id'),
+              function() {
+                $scope.message = 'Band updated';
+              }, handleError);
+        }
       };
 
       $scope.removeMember = function(member) {
         $scope.item.members = _.without($scope.item.members, member);
       };
 
-      apiService.band.get({id: bandId}, function(data) {
-        $scope.item = data;
-      });
-
-      apiService.member.query({}, function(data) {
-        $scope.members = data;
-      });
     });
