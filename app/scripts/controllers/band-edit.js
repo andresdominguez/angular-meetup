@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMeetupApp').controller('BandEditCtrl',
-    function($scope, $routeParams, apiService) {
+    function($scope, $routeParams, apiService, $location) {
       var bandId = $routeParams.bandId;
 
       if (bandId !== 'new') {
@@ -22,17 +22,28 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
 
       // Add a new member.
       $scope.addMember = function() {
+        if (!$scope.item.members) {
+          $scope.item.members = [];
+        }
         $scope.item.members.push($scope.selectedMember);
       };
 
       // Add a new album.
       $scope.addAlbum = function() {
+        if (!$scope.item.albums) {
+          $scope.item.albums = [];
+        }
         $scope.item.albums.push($scope.selectedAlbum);
       };
 
       // Remove a member.
       $scope.removeMember = function(member) {
         $scope.item.members = _.without($scope.item.members, member);
+      };
+
+      // Remove an album.
+      $scope.removeAlbum = function(album) {
+        $scope.item.albums = _.without($scope.item.albums, album);
       };
 
       var handleError = function(response) {
@@ -50,9 +61,8 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
               item,
               function(newItem) {
                 $scope.item = newItem;
-                $scope.message = 'Band created';
+                $location.path('/band-edit/' + newItem._id);
               }, handleError);
-
         } else {
           apiService.band.update(
               {id: bandId},
