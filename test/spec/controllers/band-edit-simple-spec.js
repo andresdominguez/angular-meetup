@@ -91,4 +91,27 @@ ddescribe('Controller: BandEditCtrl', function() {
     expect(scope.albums.length).toEqual(2);
     expect(scope.members.length).toEqual(3);
   });
+
+  it('should create new band', function() {
+    $httpBackend.whenGET('/albums').respond(albums);
+    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenPOST('/bands').respond({
+      id: 1,
+      name: 'Beastie boys'
+    });
+
+    // Given that you load a new band.
+    createController('new');
+    $httpBackend.flush();
+
+    // When you add a new band.
+    scope.item = {
+      name: 'Beastie boys'
+    };
+    scope.saveBand();
+    $httpBackend.flush();
+
+    // Then ensure the album was created with id 1.
+    expect(scope.item).toEqualData({id: 1, name: 'Beastie boys'});
+  });
 });
