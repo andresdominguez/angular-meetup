@@ -44,7 +44,7 @@
                 data-ng-options="m.name for m in members">
           <option value="">-- Chose new member --</option>
         </select>
-        <button class="btn btn-small btn-primary" data-ng-click="addMember(member)">Add</button>
+        <button class="btn btn-small btn-primary" data-ng-click="addMember()">Add</button>
       </div>
     </div>
 
@@ -52,13 +52,23 @@
       <label class="control-label">Albums</label>
 
       <div class="controls">
-        <input type="text">
+        <ul class="unstyled">
+          <li data-ng-repeat="album in item.albums">
+            {{album.name}}
+            [<a href data-ng-click="removeAlbum(album)">X</a>]
+          </li>
+        </ul>
+        <select data-ng-model="selectedAlbum"
+                data-ng-options="a.name for a in albums">
+          <option value="">-- Chose new member --</option>
+        </select>
+        <button class="btn btn-small btn-primary" data-ng-click="addAlbum()">Add</button>
       </div>
     </div>
 
     <div class="control-group">
       <div class="controls">
-        <button class="btn btn-success" data-ng-click="saveBand()">Save</button>
+        <button class="btn btn-primary" data-ng-click="saveBand()">Save</button>
         <a href="#/band-list" class="btn">Back</a>
       </div>
     </div>
