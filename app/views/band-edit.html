@@ -6,9 +6,16 @@
   <form class="form-horizontal">
     <legend>
       Band details
-
       <div data-ng-show="error">{{error}}</div>
     </legend>
+
+    <div class="control-group">
+      <label class="control-label">ID</label>
+
+      <div class="controls">
+        <input type="text" data-ng-model="item._id" disabled>
+      </div>
+    </div>
 
     <div class="control-group">
       <label class="control-label">Name:</label>
@@ -48,9 +55,8 @@
 
     <div class="control-group">
       <div class="controls">
-        <button class="btn btn-success"
-                data-ng-click="saveBand()">Save
-        </button>
+        <button class="btn btn-success" data-ng-click="saveBand()">Save</button>
+        <a href="#/band-list" class="btn">Back</a>
       </div>
     </div>
 
