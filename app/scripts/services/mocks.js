@@ -2,10 +2,18 @@
 
 angular.module('angularMeetupApp').factory('mocks', function() {
   return {
+    album: {
+      getList: function() {
+        return [
+          {name: 'Check your head'},
+          {name: 'Pauls boutique'}
+        ]
+      }
+    },
     band: {
       getById: function() {
         return {
-          name: 'Wu-Tang Clan',
+          name: 'Beastie boys',
           albums: [],
           members: []
         }
@@ -13,7 +21,7 @@ angular.module('angularMeetupApp').factory('mocks', function() {
       getList: function() {
         return [
           {name: 'Wu-Tang clan'},
-          {name: 'The Police'}
+          {name: 'Beastie boys'}
         ]
       }
     },
@@ -23,8 +31,9 @@ angular.module('angularMeetupApp').factory('mocks', function() {
       },
       getList: function() {
         return [
-          {name: 'Method Man'},
-          {name: 'Ghostface Killah'}
+          {name: 'Michael "Mike D" Diamond'},
+          {name: 'Adam "Ad-Rock" Horovitz'},
+          {name: 'Adam "MCA" Yauch'}
         ];
       }
     }
