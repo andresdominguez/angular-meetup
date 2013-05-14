@@ -6,6 +6,9 @@
     <form class="form-horizontal">
       <legend>Edit band member</legend>
 
+      <h4 data-ng-show="error" data-ng-bind="error" class="alert-block alert-error"></h4>
+      <h4 data-ng-show="message" data-ng-bind="message" class="alert-block alert-success"></h4>
+
       <div class="control-group">
         <label class="control-label">ID</label>
 
