@@ -14,7 +14,6 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
       var requestHandler = h.whenGET(settings.url);
 
       if (!spy) {
-        console.log('Creating spy for', resource, settings);
         spy = spyOn(resource, settings.method).andCallThrough();
       }
 
@@ -28,12 +27,23 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
       }
     };
 
+    var addWhenCreate = function(settings) {
+      var requestHandler = h.whenPOST(settings.url);
+
+      return {
+        returns: function(data) {
+          requestHandler.respond(data);
+        }
+      }
+    };
+
     return {
       getSpy: function() {
         return spy;
       },
       whenGetById: _.partial(addWhenGet, settings.resource, settings.byId),
-      whenGetList: _.partial(addWhenGet, settings.resource, settings.list)
+      whenGetList: _.partial(addWhenGet, settings.resource, settings.list),
+      whenCreate: _.partial(addWhenCreate, settings.create)
     }
   };
 
@@ -45,6 +55,10 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
         url: '/albums',
         response: mocks.band.getList,
         method: 'query'
+      },
+      create: {
+        url: '/albums',
+        method: 'save'
       }
     }),
     band: createResource({
@@ -58,6 +72,10 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
         url: '/bands',
         response: mocks.band.getList,
         method: 'query'
+      },
+      create: {
+        url: '/bands',
+        method: 'save'
       }
     }),
     member: createResource({
