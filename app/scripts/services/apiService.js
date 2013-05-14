@@ -16,8 +16,10 @@ angular.module('angularMeetupApp').
       });
 
       var member = $resource('/members/:id', {}, {});
+      var album = $resource('/albums/:id', {}, {});
 
       return {
+        album: album,
         band: band,
         member: member
       };
