@@ -11,13 +11,37 @@ angular.module('angularMeetupApp')
         });
       }
 
+      var handleError = function(response) {
+        $scope.error = response.data;
+      };
+
+      // Delete the member.
       $scope.delete = function() {
         apiService.member.delete({id: memberId}, function() {
           $location.path('/member-list');
-        });
+        }, handleError);
       };
 
       $scope.save = function() {
+        $scope.message = '';
+
+        var isNew = memberId === 'new',
+            item = angular.copy($scope.item);
+
+        if (isNew) {
+          apiService.member.save($scope.item,
+              function(newItem) {
+                $scope.item = newItem;
+                $scope.message = 'Member created';
+              }, handleError)
+        } else {
+          apiService.album.update({id: albumId}, _.omit(item, '_id'),
+              function() {
+                $scope.message = 'Member updated'
+              }, handleError);
+        }
+
+
         apiService.member.save({}, $scope.item,
             function(newItem, b) {
               $scope.item = newItem;
