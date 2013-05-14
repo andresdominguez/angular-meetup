@@ -15,8 +15,16 @@ angular.module('angularMeetupApp').
         }
       });
 
-      var member = $resource('/members/:id', {}, {});
-      var album = $resource('/albums/:id', {}, {});
+      var member = $resource('/members/:id', {}, {
+        update: {
+          method: 'PUT'
+        }
+      });
+      var album = $resource('/albums/:id', {}, {
+        update: {
+          method: 'PUT'
+        }
+      });
 
       return {
         album: album,

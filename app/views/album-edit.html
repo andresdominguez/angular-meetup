@@ -1,11 +1,15 @@
 <div>
   <div class="hero-unit">
     <h1>Album</h1>
+
     <p>Album properties page</p>
   </div>
   <div style="padding-left: 60px;">
     <form class="form-horizontal">
       <legend>Edit album</legend>
+
+      <h4 data-ng-show="error" data-ng-bind="error" class="alert-block alert-error"></h4>
+      <h4 data-ng-show="message" data-ng-bind="message" class="alert-block alert-success"></h4>
 
       <div class="control-group">
         <label class="control-label">ID</label>
@@ -24,9 +28,18 @@
       </div>
 
       <div class="control-group">
+        <label class="control-label">Year</label>
+
+        <div class="controls">
+          <input type="number" data-ng-model="item.year">
+        </div>
+      </div>
+
+      <div class="control-group">
         <div class="controls">
           <button class="btn btn-primary" data-ng-click="save()">Save</button>
           <button class="btn btn-danger" data-ng-click="delete()">Delete</button>
+          <a href="#/album-list" class="btn">Back</a>
         </div>
       </div>
     </form>
