@@ -28,7 +28,7 @@ app.config(function($routeProvider) {
         templateUrl: 'views/album-list.html',
         controller: 'AlbumListCtrl'
       })
-      .when('/album-edit', {
+      .when('/album-edit/:albumId', {
         templateUrl: 'views/album-edit.html',
         controller: 'AlbumEditCtrl'
       })
