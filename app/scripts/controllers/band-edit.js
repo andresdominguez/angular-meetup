@@ -9,9 +9,7 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
       $scope.albums = apiService.album.query();
 
       if (bandId !== 'new') {
-        apiService.band.get({id: bandId}, function(data) {
-          $scope.item = data;
-        });
+        $scope.item = apiService.band.get({id: bandId});
       }
 
       // Add a new member.
