@@ -8,9 +8,37 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
       $scope.members = apiService.member.query();
       $scope.albums = apiService.album.query();
 
+      var handleError = function(response) {
+        $scope.error = response.data;
+      };
+
       if (bandId !== 'new') {
-        $scope.item = apiService.band.get({id: bandId});
+        $scope.item = apiService.band.get({id: bandId}, function(a) {
+        }, handleError);
       }
+
+      $scope.saveBand = function() {
+        $scope.message = '';
+
+        var isNew = bandId === 'new',
+            item = angular.copy($scope.item);
+
+        if (isNew) {
+          apiService.band.save(
+              item,
+              function(newItem) {
+                $scope.item = newItem;
+                $location.path('/band-edit/' + newItem._id);
+              }, handleError);
+        } else {
+          apiService.band.update(
+              {id: bandId},
+              _.omit(item, '_id'),
+              function() {
+                $scope.message = 'Band updated';
+              }, handleError);
+        }
+      };
 
       // Add a new member.
       $scope.addMember = function() {
@@ -36,32 +64,5 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
       // Remove an album.
       $scope.removeAlbum = function(album) {
         $scope.item.albums = _.without($scope.item.albums, album);
-      };
-
-      var handleError = function(response) {
-        $scope.error = response.data;
-      };
-
-      $scope.saveBand = function() {
-        $scope.message = '';
-
-        var isNew = bandId === 'new',
-            item = angular.copy($scope.item);
-
-        if (isNew) {
-          apiService.band.save(
-              item,
-              function(newItem) {
-                $scope.item = newItem;
-                $location.path('/band-edit/' + newItem._id);
-              }, handleError);
-        } else {
-          apiService.band.update(
-              {id: bandId},
-              _.omit(item, '_id'),
-              function() {
-                $scope.message = 'Band updated';
-              }, handleError);
-        }
       };
     });
