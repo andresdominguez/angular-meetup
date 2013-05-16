@@ -4,21 +4,15 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
     function($scope, $routeParams, apiService, $location) {
       var bandId = $routeParams.bandId;
 
+      // Get members and albums.
+      $scope.members = apiService.member.query();
+      $scope.albums = apiService.album.query();
+
       if (bandId !== 'new') {
         apiService.band.get({id: bandId}, function(data) {
           $scope.item = data;
         });
       }
-
-      // Get members.
-      apiService.member.query({}, function(data) {
-        $scope.members = data;
-      });
-
-      // Get albums.
-      apiService.album.query(function(data) {
-        $scope.albums = data;
-      });
 
       // Add a new member.
       $scope.addMember = function() {
