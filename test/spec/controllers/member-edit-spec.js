@@ -1,6 +1,6 @@
 'use strict';
 
-ddescribe('Controller: MemberEditCtrl', function() {
+describe('Controller: MemberEditCtrl', function() {
 
   beforeEach(module('angularMeetupApp', 'ControllerTestHelper'));
 
