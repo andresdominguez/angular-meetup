@@ -73,24 +73,6 @@ describe('Controller: BandEditCtrl', function() {
     expect(scope.members.length).toEqual(3);
   });
 
-  it('should load data for new band', function() {
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
-
-    // Given that you load a new band.
-    createController('new');
-
-    // When you receive the data.
-    $httpBackend.flush();
-
-    // Then ensure the album is undefined.
-    expect(scope.item).toBeUndefined();
-
-    // And ensure the albums and the members were loaded.
-    expect(scope.albums.length).toEqual(2);
-    expect(scope.members.length).toEqual(3);
-  });
-
   it('should create new band', function() {
     $httpBackend.whenGET('/albums').respond(albums);
     $httpBackend.whenGET('/members').respond(members);
