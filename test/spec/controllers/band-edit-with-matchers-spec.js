@@ -1,6 +1,6 @@
 'use strict';
 
-ddescribe('Controller: BandEditCtrl', function() {
+describe('Controller: BandEditCtrl', function() {
 
   beforeEach(module('angularMeetupApp', 'ControllerTestHelper'));
 
@@ -41,9 +41,9 @@ ddescribe('Controller: BandEditCtrl', function() {
 
     // Given that you load an exiting band.
     createController(123);
-    expect(scope.item).toBeUndefined();
-    expect(scope.albums).toBeUndefined();
-    expect(scope.members).toBeUndefined();
+    expect(scope.item).toEqualData({});
+    expect(scope.albums).toEqual([]);
+    expect(scope.members).toEqual([]);
 
     // When you receive the data.
     fake.flush();
