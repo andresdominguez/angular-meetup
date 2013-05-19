@@ -2,6 +2,14 @@
 
 angular.module('angularMeetupApp').factory('jasmineMatchers', function() {
 
+  /**
+   * Ensure the spy for the resource method ws created. It will add an error
+   * message when you don't have a spy.
+   *
+   * @param {!Object} scope A reference to the jasmine's 'this'.
+   * @param {Object} spy The spy on the resource method.
+   * @returns {boolean} False when the spy is not defined.
+   */
   var verifySpy = function(scope, spy) {
     if (!spy) {
       scope.message = function() {
