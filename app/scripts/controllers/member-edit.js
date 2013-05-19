@@ -31,8 +31,7 @@ angular.module('angularMeetupApp')
         if (isNew) {
           apiService.member.save($scope.item,
               function(newItem) {
-                $scope.item = newItem;
-                $scope.message = 'Member created';
+                $location.path('/member-edit/' + newItem._id);
               }, handleError);
         } else {
           apiService.member.update({id: memberId}, _.omit(item, '_id'),
