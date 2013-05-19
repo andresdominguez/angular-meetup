@@ -7,7 +7,7 @@ angular.module('angularMeetupApp').factory('mocks', function() {
         return [
           {name: 'Check your head'},
           {name: 'Pauls boutique'}
-        ]
+        ];
       }
     },
     band: {
@@ -16,18 +16,18 @@ angular.module('angularMeetupApp').factory('mocks', function() {
           name: 'Beastie boys',
           albums: [],
           members: []
-        }
+        };
       },
       getList: function() {
         return [
           {name: 'Wu-Tang clan'},
           {name: 'Beastie boys'}
-        ]
+        ];
       }
     },
     member: {
       getById: function() {
-        return {name: 'Method Man'}
+        return {name: 'Method Man'};
       },
       getList: function() {
         return [
