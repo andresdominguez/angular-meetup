@@ -41,7 +41,19 @@ ddescribe('Controller: AlbumEditCtrl', function() {
     expect(fake.album).toHaveBeenCreated();
   });
 
-  it('should update', function() {
+  it('should update an exiting album', function() {
+    fake.album.whenGetById().returnsDefault();
+    fake.album.whenUpdate().returns();
 
+    // Given that you load an existing album.
+    createController(123);
+    fake.flush();
+
+    // When you save the album with a new name.
+    scope.item.name = 'updated name';
+    scope.save();
+
+    // Then ensure the album was updated.
+    expect(fake.album).toHaveBeenUpdatedWith({name: 'updated name'});
   });
 });
