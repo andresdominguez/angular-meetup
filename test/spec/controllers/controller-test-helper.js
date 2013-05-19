@@ -123,12 +123,19 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
         response: mocks.member.getById,
         method: 'get'
       },
+      create: {
+        url: '/members',
+        method: 'save'
+      },
       list: {
         url: '/members',
         response: mocks.member.getList,
         method: 'query'
+      },
+      update: {
+        url: new RegExp('/members/[0-9]+'),
+        method: 'update'
       }
     })
-
   };
 });
