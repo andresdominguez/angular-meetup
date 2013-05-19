@@ -76,14 +76,23 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
     flush: h.flush,
     album: createResource({
       resource: apiService.album,
+      byId: {
+        url: new RegExp('/albums/[0-9]+'),
+        response: mocks.album.getById,
+        method: 'get'
+      },
+      create: {
+        url: '/albums',
+        method: 'save'
+      },
       list: {
         url: '/albums',
         response: mocks.band.getList,
         method: 'query'
       },
-      create: {
-        url: '/albums',
-        method: 'save'
+      update: {
+        url: new RegExp('/albums/[0-9]+'),
+        method: 'update'
       }
     }),
     band: createResource({
@@ -93,14 +102,14 @@ testHelper.service('fakeResource', function(apiService, _$httpBackend_, mocks) {
         response: mocks.band.getById,
         method: 'get'
       },
+      create: {
+        url: '/bands',
+        method: 'save'
+      },
       list: {
         url: '/bands',
         response: mocks.band.getList,
         method: 'query'
-      },
-      create: {
-        url: '/bands',
-        method: 'save'
       },
       update: {
         url: new RegExp('/bands/[0-9]+'),
