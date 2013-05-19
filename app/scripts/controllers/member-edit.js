@@ -33,11 +33,11 @@ angular.module('angularMeetupApp')
               function(newItem) {
                 $scope.item = newItem;
                 $scope.message = 'Member created';
-              }, handleError)
+              }, handleError);
         } else {
           apiService.member.update({id: memberId}, _.omit(item, '_id'),
               function(updatedItem) {
-                $scope.message = 'Member updated'
+                $scope.message = 'Member updated';
               }, handleError);
         }
       };

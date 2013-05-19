@@ -6,7 +6,7 @@ angular.module('angularMeetupApp').controller('AlbumEditCtrl',
       if (albumId !== 'new') {
         apiService.album.get({id: albumId}, function(data) {
           $scope.item = data;
-        })
+        });
       }
 
       var handleError = function(data) {
@@ -34,5 +34,5 @@ angular.module('angularMeetupApp').controller('AlbumEditCtrl',
         apiService.album.delete({id: albumId}, function(a) {
         }, handleError);
         $location.path('/album-list');
-      }
+      };
     });
