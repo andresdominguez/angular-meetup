@@ -67,7 +67,7 @@ angular.module('angularMeetupApp')
           if (!allPropertiesMatch) {
             this.message = function() {
               return 'Expected ' + JSON.stringify(item) + ' to match ' + JSON.stringify(expected);
-            }
+            };
           }
 
           return allPropertiesMatch;
