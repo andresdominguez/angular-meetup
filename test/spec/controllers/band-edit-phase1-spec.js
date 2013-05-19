@@ -12,12 +12,7 @@ describe('Controller: BandEditCtrl', function() {
     });
   });
 
-  var BandEditCtrl,
-      scope,
-      controller,
-      rootScope,
-      $httpBackend,
-      routeParams;
+  var BandEditCtrl, scope, controller, rootScope, $httpBackend, routeParams;
 
   var band = {
     name: 'Beastie boys',
@@ -45,7 +40,6 @@ describe('Controller: BandEditCtrl', function() {
     });
   };
 
-  // Initialize the controller and a mock scope
   beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $routeParams) {
     controller = $controller;
     rootScope = $rootScope;

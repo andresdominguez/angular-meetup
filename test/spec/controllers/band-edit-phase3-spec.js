@@ -12,13 +12,7 @@ describe('Controller: BandEditCtrl', function() {
     });
   });
 
-  var BandEditCtrl,
-      scope,
-      controller,
-      rootScope,
-      routeParams,
-      theMocks,
-      fake;
+  var BandEditCtrl, scope, controller, rootScope, routeParams, theMocks, fake;
 
   var createController = function(bandId) {
     routeParams.bandId = bandId;
@@ -29,7 +23,6 @@ describe('Controller: BandEditCtrl', function() {
     });
   };
 
-  // Initialize the controller and a mock scope
   beforeEach(inject(function($controller, $rootScope, $routeParams, mocks, fakeResource) {
     controller = $controller;
     rootScope = $rootScope;
