@@ -1,6 +1,6 @@
 'use strict';
 
-ddescribe('Controller: AlbumEditCtrl', function() {
+describe('Controller: AlbumEditCtrl', function() {
 
   beforeEach(module('angularMeetupApp', 'ControllerTestHelper'));
 
