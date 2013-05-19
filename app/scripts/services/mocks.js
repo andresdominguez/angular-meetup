@@ -3,6 +3,12 @@
 angular.module('angularMeetupApp').factory('mocks', function() {
   return {
     album: {
+      getById: function() {
+        return {
+          name: 'Licensed to Ill',
+          year: 1986
+        };
+      },
       getList: function() {
         return [
           {name: 'Check your head'},
