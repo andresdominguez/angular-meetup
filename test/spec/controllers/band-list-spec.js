@@ -1,22 +1,33 @@
 'use strict';
 
-describe('Controller: BandListCtrl', function () {
+describe('Controller: BandListCtrl', function() {
 
-  // load the controller's module
-  beforeEach(module('angularMeetupApp'));
+  beforeEach(module('angularMeetupApp', 'ControllerTestHelper'));
 
-  var BandListCtrl,
-    scope;
-
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    BandListCtrl = $controller('BandListCtrl', {
-      $scope: scope
-    });
+  beforeEach(inject(function(jasmineMatchers) {
+    this.addMatchers(jasmineMatchers);
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  var BandListCtrl, scope, createController, fake;
+
+  beforeEach(inject(function($controller, $rootScope, fakeResource) {
+    fake = fakeResource;
+
+    createController = function() {
+      scope = $rootScope.$new();
+      BandListCtrl = $controller('BandListCtrl', {
+        $scope: scope
+      });
+    };
+  }));
+
+  it('should request a list of bands', function() {
+    fake.band.whenGetList().returnsDefault();
+
+    createController();
+    fake.flush();
+
+    expect(scope.bandList.length).toBe(2);
+    expect(fake.band).toHaveBeenRequested();
   });
 });
