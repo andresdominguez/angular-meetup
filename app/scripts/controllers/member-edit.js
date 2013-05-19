@@ -12,7 +12,6 @@ angular.module('angularMeetupApp')
       }
 
       var handleError = function(response) {
-        debugger;
         $scope.error = response.data;
       };
 
@@ -32,7 +31,6 @@ angular.module('angularMeetupApp')
         if (isNew) {
           apiService.member.save($scope.item,
               function(newItem) {
-                debugger;
                 $scope.item = newItem;
                 $scope.message = 'Member created';
               }, handleError)

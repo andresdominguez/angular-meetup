@@ -25,10 +25,10 @@ angular.module('angularMeetupApp').controller('AlbumEditCtrl',
         } else {
           apiService.album.update({id: albumId}, _.omit(item, '_id'),
               function() {
-                $scope.message = 'Album updated'
+                $scope.message = 'Album updated';
               }, handleError);
         }
-      }
+      };
 
       $scope.delete = function() {
         apiService.album.delete({id: albumId}, function(a) {
