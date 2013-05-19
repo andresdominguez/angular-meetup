@@ -7,7 +7,7 @@ angular.module('angularMeetupApp')
         toEqualData: function(expected) {
           return angular.equals(this.actual, expected);
         },
-        toHaveBeenRequested: function(expected) {
+        toHaveBeenRequested: function() {
           var spy = this.actual.getSpy();
           if (!spy) {
             this.message = function() {
@@ -17,7 +17,7 @@ angular.module('angularMeetupApp')
           }
           return spy.callCount > 0;
         },
-        toHaveBeenCreated: function(expected) {
+        toHaveBeenCreated: function() {
           var spy = this.actual.getCreateSpy();
           if (!spy) {
             this.message = function() {
@@ -36,7 +36,7 @@ angular.module('angularMeetupApp')
 
           return  wasCalled;
         },
-        toHaveBeenUpdated: function(expected) {
+        toHaveBeenUpdated: function() {
           var spy = this.actual.getUpdateSpy();
           if (!spy) {
             this.message = function() {

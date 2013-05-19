@@ -13,7 +13,7 @@ angular.module('angularMeetupApp').controller('BandEditCtrl',
       };
 
       if (bandId !== 'new') {
-        $scope.item = apiService.band.get({id: bandId}, function(a) {
+        $scope.item = apiService.band.get({id: bandId}, function() {
         }, handleError);
       }
 

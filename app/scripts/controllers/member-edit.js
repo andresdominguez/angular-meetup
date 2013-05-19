@@ -36,7 +36,7 @@ angular.module('angularMeetupApp')
               }, handleError);
         } else {
           apiService.member.update({id: memberId}, _.omit(item, '_id'),
-              function(updatedItem) {
+              function() {
                 $scope.message = 'Member updated';
               }, handleError);
         }
