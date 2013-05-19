@@ -1,22 +1,36 @@
 'use strict';
 
-describe('Controller: AlbumListCtrl', function () {
+describe('Controller: AlbumListCtrl', function() {
 
-  // load the controller's module
-  beforeEach(module('angularMeetupApp'));
+  beforeEach(module('angularMeetupApp', 'ControllerTestHelper'));
 
-  var AlbumListCtrl,
-    scope;
-
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    AlbumListCtrl = $controller('AlbumListCtrl', {
-      $scope: scope
-    });
+  beforeEach(inject(function(jasmineMatchers) {
+    this.addMatchers(jasmineMatchers);
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  var AlbumListCtrl, scope, createController, fake;
+
+  beforeEach(inject(function($controller, $rootScope, fakeResource) {
+    fake = fakeResource;
+
+    createController = function() {
+      scope = $rootScope.$new();
+      AlbumListCtrl = $controller('AlbumListCtrl', {
+        $scope: scope
+      });
+    };
+  }));
+
+  it('should request a list of albums', function() {
+    fake.album.whenGetList().returnsDefault();
+
+    // When you create the controller.
+    createController();
+    expect(scope.list).toEqual([]);
+    fake.flush();
+
+    // Then ensure the list of albums was populated.
+    expect(scope.list.length).toBe(2);
+    expect(fake.album).toHaveBeenRequested();
   });
 });
