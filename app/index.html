@@ -14,10 +14,15 @@
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <style type="text/css">
+      .container {
+        margin: 0;
+      }
+    </style>
   </head>
   <body ng-app="angularMeetupApp">
     <!-- Add your site or application content here -->
-    <div class="container" ng-view></div>
+    <div class="container" class="mySize" ng-view></div>
 
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>

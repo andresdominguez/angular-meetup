@@ -78,10 +78,7 @@ describe('Controller: BandEditCtrl', function() {
     $httpBackend.whenGET('/bands/123').respond(theMocks.band.getById());
     $httpBackend.whenGET('/albums').respond(theMocks.album.getList());
     $httpBackend.whenGET('/members').respond(theMocks.member.getList());
-    $httpBackend.whenPUT('/bands/123').respond({
-      id: 1,
-      name: 'Beastie boys'
-    });
+    $httpBackend.whenPUT('/bands/123').respond();
 
     // Given that you load an existing band.
     createController(123);

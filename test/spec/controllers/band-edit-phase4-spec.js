@@ -85,10 +85,7 @@ describe('Controller: BandEditCtrl', function() {
     fake.band.whenGetById().returnsDefault();
     fake.album.whenGetList().returnsDefault();
     fake.member.whenGetList().returnsDefault();
-    fake.band.whenUpdate().returns({
-      id: 1,
-      name: 'Beastie boys'
-    });
+    fake.band.whenUpdate().returns();
 
     // Given that you load an existing band.
     createController(123);
