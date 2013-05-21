@@ -14,23 +14,6 @@ describe('Controller: BandEditCtrl', function() {
 
   var BandEditCtrl, scope, controller, rootScope, $httpBackend, routeParams;
 
-  var band = {
-    name: 'Beastie boys',
-    albums: [],
-    members: []
-  };
-
-  var members = [
-    {name: 'Michael "Mike D" Diamond'},
-    {name: 'Adam "Ad-Rock" Horovitz'},
-    {name: 'Adam "MCA" Yauch'}
-  ];
-
-  var albums = [
-    {name: 'Check your head'},
-    {name: 'Pauls boutique'}
-  ];
-
   var createController = function(bandId) {
     routeParams.bandId = bandId;
 
@@ -48,9 +31,20 @@ describe('Controller: BandEditCtrl', function() {
   }));
 
   it('should load existing band', function() {
-    $httpBackend.whenGET('/bands/123').respond(band);
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenGET('/bands/123').respond({
+      name: 'Beastie boys',
+      albums: [],
+      members: []
+    });
+    $httpBackend.whenGET('/albums').respond([
+      {name: 'Check your head'},
+      {name: 'Pauls boutique'}
+    ]);
+    $httpBackend.whenGET('/members').respond([
+      {name: 'Michael "Mike D" Diamond'},
+      {name: 'Adam "Ad-Rock" Horovitz'},
+      {name: 'Adam "MCA" Yauch'}
+    ]);
 
     // Given that you load an exiting band.
     createController(123);
@@ -62,14 +56,25 @@ describe('Controller: BandEditCtrl', function() {
     $httpBackend.flush();
 
     // Then ensure the scope variables contain the data.
-    expect(scope.item).toEqualData(band);
+    expect(scope.item).toEqualData({
+      name: 'Beastie boys',
+      albums: [],
+      members: []
+    });
     expect(scope.albums.length).toEqual(2);
     expect(scope.members.length).toEqual(3);
   });
 
   it('should create new band', function() {
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
+    $httpBackend.whenGET('/albums').respond([
+      {name: 'Check your head'},
+      {name: 'Pauls boutique'}
+    ]);
+    $httpBackend.whenGET('/members').respond([
+      {name: 'Michael "Mike D" Diamond'},
+      {name: 'Adam "Ad-Rock" Horovitz'},
+      {name: 'Adam "MCA" Yauch'}
+    ]);
     $httpBackend.whenPOST('/bands').respond({
       id: 1,
       name: 'Beastie boys'
@@ -91,13 +96,21 @@ describe('Controller: BandEditCtrl', function() {
   });
 
   it('should update an existing band', function() {
-    $httpBackend.whenGET('/bands/123').respond(band);
-    $httpBackend.whenGET('/albums').respond(albums);
-    $httpBackend.whenGET('/members').respond(members);
-    $httpBackend.whenPUT('/bands/123').respond({
-      id: 1,
-      name: 'Beastie boys'
+    $httpBackend.whenGET('/bands/123').respond({
+      name: 'Beastie boys',
+      albums: [],
+      members: []
     });
+    $httpBackend.whenGET('/albums').respond([
+      {name: 'Check your head'},
+      {name: 'Pauls boutique'}
+    ]);
+    $httpBackend.whenGET('/members').respond([
+      {name: 'Michael "Mike D" Diamond'},
+      {name: 'Adam "Ad-Rock" Horovitz'},
+      {name: 'Adam "MCA" Yauch'}
+    ]);
+    $httpBackend.whenPUT('/bands/123').respond();
 
     // Given that you load an existing band.
     createController(123);
