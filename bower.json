@@ -1,0 +1,11 @@
+{
+  "name": "angular-meetup",
+  "version": "0.0.0",
+  "devDependencies": {
+    "angular": "~1.0.7",
+    "angular-resource": "~1.0.7",
+    "underscore": "~1.4.4",
+    "angular-sanitize": "~1.0.7",
+    "angular-cookies": "~1.0.7"
+  }
+}
