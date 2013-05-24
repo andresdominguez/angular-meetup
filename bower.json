@@ -6,6 +6,7 @@
     "angular-resource": "~1.0.7",
     "underscore": "~1.4.4",
     "angular-sanitize": "~1.0.7",
-    "angular-cookies": "~1.0.7"
+    "angular-cookies": "~1.0.7",
+    "angular-mocks": "~1.0.7"
   }
 }
