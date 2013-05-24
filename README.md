@@ -2,6 +2,8 @@ angular-meetup
 ==============
 Here are the instructions to run the code from the meetup.
 
+Slides: https://docs.google.com/presentation/d/1FSe8eWcEhsycAZ4PqwvTPQ1wPk-aF1iGvnyo2fe81ic/edit?usp=sharing
+
 ### Get the code
 git clone https://github.com/andresdominguez/angular-meetup.git
 
