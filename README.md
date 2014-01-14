@@ -1,4 +1,4 @@
-Custom DSL for Angular's #$httpBackend and Jasmine matchers
+Custom DSL for Angular's $httpBackend and Jasmine matchers
 ===========================================================
 This is a sample application that demonstrates how to write a DSL (domain specific language) to improve your
 unit tets for an AngularJS application. The test code includes a DSL (called controller test helper) and a few
