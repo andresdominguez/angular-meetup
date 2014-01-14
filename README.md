@@ -1,8 +1,10 @@
-angular-meetup
-==============
+Custom DSL for Angular's #$httpBackend and Jasmine matchers
+===========================================================
 This is a sample application that demonstrates how to write a DSL (domain specific language) to improve your
 unit tets for an AngularJS application. The test code includes a DSL (called controller test helper) and a few
 custon Jasmine matchers.
+
+The sample application is called the band app. It has a mongo DB persistence layer, an express REST API, and an Angular application. The code was used to as an example in an Angular meetup.
 
 Here are the instructions to run the code from the meetup.
 
