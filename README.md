@@ -1,32 +1,36 @@
 angular-meetup
 ==============
+This is a sample application that demonstrates how to write a DSL (domain specific language) to improve your
+unit tets for an AngularJS application. The test code includes a DSL (called controller test helper) and a few
+custon Jasmine matchers.
+
 Here are the instructions to run the code from the meetup.
 
 Slides: https://docs.google.com/presentation/d/1FSe8eWcEhsycAZ4PqwvTPQ1wPk-aF1iGvnyo2fe81ic/edit?usp=sharing
 
 ### Get the code
-git clone https://github.com/andresdominguez/angular-meetup.git
+`git clone https://github.com/andresdominguez/angular-meetup.git`
 
 ### Start Mongo DB
 Download Mongo DB from http://www.mongodb.org/ 
 
 Create a directory to hold the data and start mongod:
 
-~/dev/angular-meetup$ mkdir db
+`~/dev/angular-meetup$ mkdir db`
 
-~/Downloads/mongodb-linux-x86_64-2.4.3/bin$ ./mongod --dbpath ~/dev/angular-meetup/db/
+`~/Downloads/mongodb-linux-x86_64-2.4.3/bin$ ./mongod --dbpath ~/dev/angular-meetup/db/`
 
 ### Get Node
 Download and install http://nodejs.org/
 
 ### Install dependencies
-~/dev/angular-meetup$ npm install
+`~/dev/angular-meetup$ npm install`
 
-~/dev/angular-meetup$ ./node_modules/bower/bin/bower install 
+`~/dev/angular-meetup$ ./node_modules/bower/bin/bower install `
 
 
 ### Run the server
-~/dev/angular-meetup$ node server.js
+`~/dev/angular-meetup$ node server.js`
 
 ### See the app
 Open your browser http://localhost:3000/
@@ -35,8 +39,8 @@ Open your browser http://localhost:3000/
 
 Get Karma (you may need to use sudo)
 
-npm install -g karma
+`npm install -g karma`
 
 And then start Karma
 
-~/dev/angular-meetup$ karma start
+`~/dev/angular-meetup$ karma start`
